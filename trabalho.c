@@ -73,3 +73,23 @@ void alterar_contato(char *telefone, TipoContato tipo) {
   }
   printf("O Contato não foi encontrado!\n");
 }
+
+int telefone_unico(const char *telefone, TipoContato tipo) {
+  Contato *agenda;
+  int num_contatos;
+
+  if (tipo == PESSOAL) {
+    agenda = agenda_pessoal;
+    num_contatos = num_contatos_pessoais;
+  } else {
+    agenda = agenda_trabalho;
+    num_contatos = num_contatos_trabalho;
+  }
+
+  for (int i = 0; i < num_contatos; i++) {
+    if (strcmp(agenda[i].telefone, telefone) == 0) {
+      return 0;
+    }
+  }
+  return 1;
+}
